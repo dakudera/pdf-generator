@@ -5,75 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment Letter</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        @page {
+           margin-top: 100px;
+           margin-bottom: 100px;
+
+           /* Header */
+           @top-center {
+               content: element(header);
+           }
+
+           /* Footer */
+<!--           @bottom-center {-->
+<!--               content: element(footer);-->
+<!--           }-->
+       }
+
+       #header {
+           position: running(header);
+           text-align: center;
+           font-size: 12px;
+           border-bottom: 1px solid #000;
+       }
+
+       body {
+           font-family: Arial, sans-serif;
+       }
+
+       .text-style{
+           font-weight: bold;
         }
 
-        .letter {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            text-align: center;
+       .text-block{
             margin-bottom: 20px;
+       }
+
+       .title {
+           text-align: center;
+           font-weight: bold;
+       }
+
+       .letter {
+           max-width: 600px;
+           margin: 0 auto;
+           padding: 20px;
+       }
+
+       .header {
+           text-align: center;
+           margin-bottom: 20px;
+       }
+
+       .employee-info {
+           margin-bottom: 20px;
+       }
+
+       .closing {
+           margin-top: 20px;
+       }
+
+       .company-logo {
+           width: 200px;
+           height: 100px;
+       }
+
+       .page-break {
+           page-break-before: always; /* Forces a page break before this element */
+       }
+
+        p{
+            margin: 0;
+
         }
 
-        .employee-info {
-            margin-bottom: 20px;
-        }
 
-        .closing {
-            margin-top: 20px;
-        }
-
-        .company-logo {
-            width: 200px;
-            height: 100px;
-        }
-
-        .page-break {
-            page-break-before: always; /* Forces a page break before this element */
-        }
     </style>
 </head>
 <body>
+<div id="header">
+    <img src="@{image}" alt="Header Image" class="header-image company-logo">
+    This is a header on every page
+</div>
+
 <div class="letter">
-    <div class="header">
-        <h2>Appointment Letter</h2>
+
+    <div class="title text-block">
+        <p>Statement @{statementId}</p>
     </div>
-
-    <p>
-        Dear <span id="employeeName">@{employeeName}</span>,
-    </p>
-
-    <p>
-        We are pleased to inform you that you have been appointed as an employee at XYZ Company. Your dedication and skills have earned you the position with the following details:
-    </p>
-
-    <div class="employee-info">
-        <p><strong>Employee ID:</strong> <span id="employeeId">@{employeeId}</span></p>
+    <div class="text-block">
+        <p><b>Client name:</b> @{senderName}</p>
+        <p><b>Client card name:</b> @{senderCardName}</p>
+        <p><b>Client card number:</b> @{senderCardNumber}</p>
     </div>
-
-    <p class="page-break">
-        Your employment with XYZ Company will commence on <span id="startDate">@{startDate}</span>. Please report to the HR department on your joining date for further orientation and formalities.
-    </p>
-
-
-    <img src="@{image}" alt="Company Logo" class="company-logo" />
-
-    <p class="page-break">
-        We believe that your expertise will contribute significantly to our team, and we look forward to your valuable contributions.
-    </p>
-
-    <div class="closing">
-        <p>Best regards,</p>
-        <p>The XYZ Company Team</p>
+    <div class="text-block">
+        <p><b>Recipient name:</b> @{recipientName}</p>
+        <p><b>Recipient card name:</b> @{recipientCardName}</p>
+        <p><b>Recipient card number:</b> @{recipientCardNumber}</p>
+    </div>
+    <div class="text-block">
+        <p><b>Sum of payment:</b> @{sumPayment}</p>
+        <p><b>Fee:</b> @{fee}</p>
+        <p><b>Currency:</b> @{currency}</p>
     </div>
 </div>
+
+
 </body>
 </html>
